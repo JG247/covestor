@@ -1,0 +1,19 @@
+{
+  "name": "covestor",
+  "version": "0.0.0",
+  "homepage": "https://github.com/JG247/covestor",
+  "authors": [
+    "James Grant"
+  ],
+  "description": "covestor inspired app",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "requirejs": "~2.1.14"
+  },
+  "devDependencies": {
+    "domReady": "~2.0.1"
+  }
+}
