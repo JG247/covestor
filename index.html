@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Covestor Javascript Test</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/covestor.css" media="screen" />
+</head>
+<body>
+
+<div class="header">
+    <div class="body">
+        <h1>Covestor</h1>
+    </div>
+    <div class="stripe"></div>
+</div>
+
+<div class="container">
+    <div id="description">
+        <div>
+            <div>
+                <a class="btn pull-right" href="#description">x</a>
+                <h4>Javascript test</h4>
+                <br />
+                <p>To test your programming skill, we'd like you to have a go at a small task similar to the kind of thing you could end up working on here.</p>
+
+                <p>We have provided you with a template below in <i>div#application</i>. There's <a href="http://api.covestor.com/homepagetiledata?callback=callback" target="_blank">a link to our API</a> which provides the tile data stored in it's data-source attribute. There are three types of tiles: Quote panels, Manager portfolio panels and Multi Manager portfolio panels. The data provided is grouped by tile type which matches CSS class names on tiles in the template.</p>
+
+                <p>Your task is to use this data to produce an animated presentation that will showcase all content provided.</p>
+
+                <p>You should start with the presented tile set. A tile replacement should then occur every 1-3s.</p>
+
+                <h6>Some things to note:</h6>
+                <ul>
+                    <li>You may not use any JavaScript libraries (though testing frameworks, module systems and build processes are permitted and encouraged).</li>
+                    <li>Your solution should work in any modern browser, but you don't need to worry about making it fully cross browser or supporting older browsers.</li>
+                    <li>A single tile may never be updated twice in a row.</li>
+                    <li>A single Manager portfolio, Multi Manager portfolio and Quote can never be shown twice in a row.</li>
+                    <li>Tiles need to be updated at random.</li>
+                    <li>Some managers have more than one portfolio, only one can be shown at a time for a single manager.</li>
+                </ul>
+
+                <p>We hope you enjoy the task, and we look forward to seeing your solution. Feel free to get in touch if you have any questions at all about the task.</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div id="application" data-source="http://api.covestor.com/homepagetiledata?callback=callback">
+
+        <a href="http://covestor.com/covestor-core" class="panel quote QUOTES" style="background-color: rgb(58, 140, 79);">
+            <div class="quoteContainer">
+                <h3 style="color: rgb(255, 255, 255);">Introducing ZERO Management Fees<span class="whiteArrow"></span></h3>
+                <span class="howItWorks" style="display: none; color: rgb(255, 255, 255);"></span>
+            </div>
+        </a>
+
+        <a href="http://covestor.com/dickenson-bay-capital/macro-yield" class="panel moneyManager MANAGERPANEL">
+            <img src="http://cdn01.content.covestor.com/09071402/images/style1/karim-mawji.jpg">
+					<span class="bg">
+						<span class="name">Dickenson Bay</span>
+						<span class="portfolio">Macro Yield</span>
+						<span class="metric positive">26.9%</span>
+					</span>
+        </a>
+
+        <a href="http://covestor.com/covestor/yield" class="panel mmp MMPPANELS">
+            <img src="http://cdn01.content.covestor.com/09071402/images/style1/yield.png" alt="Risk Protection">
+            <p>Yield</p>
+        </a>
+
+        <a href="http://covestor.com/dorsey-wright/global-technical-leaders" class="panel moneyManager MANAGERPANEL">
+            <img src="http://cdn03.content.covestor.com/09071402/images/style1/tom-dorsey.jpg" alt="Robert Freedland">
+					<span class="bg">
+						<span class="name">Dorsey Wright</span>
+						<span class="portfolio">Global Technical Leaders</span>
+						<span class="metric positive">17.6%</span>
+					</span>
+        </a>
+
+        <a href="http://covestor.com/eric-linser/eagle-portfolio" class="panel moneyManager MANAGERPANEL">
+            <img src="http://cdn01.content.covestor.com/09071402/images/style1/eric-linser.jpg" alt="Dan Plettner">
+					<span class="bg">
+						<span class="name">Eric Linser</span>
+						<span class="portfolio">Eagle Portfolio</span>
+						<span class="metric positive">32.3%</span>
+					</span>
+        </a>
+
+        <a href="http://site.covestor.com/what-is-covestor/investment-talent" class="panel quote QUOTES">
+            <div class="quoteContainer">
+                <h3 style="color:">A marketplace of Portfolio managers you can’t access anywhere else</h3>
+                <span class="howItWorks">How it works</span>
+            </div>
+        </a>
+
+        <a href="http://covestor.com/dan-plettner/taxable-income" class="panel moneyManager MANAGERPANEL">
+            <img src="http://cdn02.content.covestor.com/09071402/images/style1/dan-plettner.jpg" alt="Dorsey Wright">
+					<span class="bg">
+						<span class="name">Dan Plettner</span>
+						<span class="portfolio">Taxable Income</span>
+						<span class="metric positive">19.3%</span>
+					</span>
+        </a>
+
+
+        <a href="http://covestor.com/covestor/diversified-equity" class="panel mmp MMPPANELS">
+            <img src="http://cdn02.content.covestor.com/09071402/images/style1/diversified-equity.png" alt="Diversified Equity" id="diversified-equity">
+            <p>Diversified Equity</p>
+        </a>
+
+
+        <a href="http://covestor.com/eqm-capital/mid-cap-quant" class="panel moneyManager MANAGERPANEL">
+            <img src="http://cdn01.content.covestor.com/09071402/images/style1/jane-edmondson.jpg" alt="Eric Linser">
+					<span class="bg">
+						<span class="name">EQM Capital</span>
+						<span class="portfolio">Mid Cap Quant</span>
+						<span class="metric negative">0.2s%</span>
+					</span>
+        </a>
+
+        <a href="http://covestor.com/covestor/risk-protection" class="panel mmp MMPPANELS">
+            <img src="http://cdn02.content.covestor.com/21071401/images/style1/risk-protection.png" alt="Risk Protection" id="risk-protection">
+            <p>Risk Protection</p>
+        </a>
+
+
+        <a href="http://covestor.com/clearbrook-capital-advisors/undervalued-opportunities" class="panel moneyManager MANAGERPANEL">
+            <img src="http://cdn02.content.covestor.com/21071401/images/style1/eric-steiman.jpg" alt="Robert Freedland" id="bob-freedland">
+				    <span class="bg">
+				        <span class="name">Clearbrook</span>
+				        <span class="portfolio">Undervalued Opportunities</span>
+				        <span class="metric positive">38.4%</span>
+				    </span>
+        </a>
+
+
+
+        <a href="http://site.covestor.com/what-is-covestor/low-fees" class="panel quote QUOTES">
+            <div class="quoteContainer">
+                <h3>No sales fees, load fees or hidden fees — ever</h3>
+                <span class="howItWorks" style="display: block;">How it works</span>
+            </div>
+        </a>
+
+
+    </div>
+</div>
+</body>
+</html>
