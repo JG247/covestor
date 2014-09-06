@@ -58,6 +58,12 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js',
+                background: true
+            }
+        },
         watch: {
             sass: {
                 files: ['sass/**/*.{scss,sass}','sass/_partials/**/*.{scss,sass}'],
@@ -68,6 +74,10 @@ module.exports = function(grunt) {
                 options: {
                     livereload: true
                 }
+            },
+            karma: {
+                files: ['app/js/**/*.js', 'js/**/**/**/*spec.js'],
+                tasks: ['karma:unit:run'] //NOTE the :run flag
             }
         },
         sass: {
@@ -85,4 +95,5 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['sass:dist', 'watch']);
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-karma');
 };
