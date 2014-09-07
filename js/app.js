@@ -6,5 +6,5 @@ define([
 ], function(DataModel){
     var data = new DataModel();
 //    data.getJson();
-    console.log(data.data);
+//    console.log(data.data);
 });
