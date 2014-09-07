@@ -51,9 +51,11 @@ define([
     DataModel.prototype.data = window.localStorage.getItem("Data");
     DataModel.prototype.selectRandomPanel = function () {
         var panels = document.getElementsByClassName('panel'),
-        randomPanelNumber = Math.floor((Math.random() * panels.length) + 0),
-        randomPanel = panels[randomPanelNumber];
-        return randomPanel;
+        randomPanelPosition = Math.floor((Math.random() * panels.length) + 0),
+        randomPanel = panels[randomPanelPosition],
+        randomPanelType = randomPanel.attributes.class.value,
+        randomPanelData = { "randomPanel" : randomPanel, "randomPanelPosition": randomPanelPosition, "randomPanelType" : randomPanelType };
+        return randomPanelData;
     };
     var dataModel = new DataModel();
     dataModel.getJson();
