@@ -5,8 +5,6 @@ define([
     'models/DataModel'
 ], function(DataModel){
     var data = new DataModel();
-    data.getData('js/data/data.json',
-        function(data) { console.log(data) },
-        function(xhr) { console.error(xhr); }
-    );
+//    data.getJson();
+    console.log(data.data);
 });
