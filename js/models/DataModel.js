@@ -32,8 +32,6 @@ define([
                 console.error(xhr);
             });
     };
-    var getJson = new DataModel();
-    getJson.getJson();
     DataModel.prototype.checkLocalStorage = function () {
         if (localStorage != "undefined"){
             return true;
@@ -51,5 +49,14 @@ define([
         }
     };
     DataModel.prototype.data = window.localStorage.getItem("Data");
+    DataModel.prototype.selectRandomPanel = function () {
+        var panels = document.getElementsByClassName('panel'),
+        randomPanelNumber = Math.floor((Math.random() * panels.length) + 0),
+        randomPanel = panels[randomPanelNumber];
+        return randomPanel;
+    };
+    var dataModel = new DataModel();
+    dataModel.getJson();
+    dataModel.selectRandomPanel();
     return DataModel;
 });
