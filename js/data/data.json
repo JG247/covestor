@@ -228,7 +228,8 @@
             "publishername":"Dan Plettner",
             "IMAGES":"http:\/\/cdn02.content.covestor.com\/14090401\/images\/style1\/dan-plettner.jpg",
             "performance":18.6362325,
-            "MODELURL":"dan-plettner\/core"
+            "MODELURL":"dan-plettner\/core",
+            "managerGroup" : "Dan Plettner"
         },
         {
             "id" : "m3",
@@ -238,7 +239,8 @@
             "publishername":"Dan Plettner",
             "IMAGES":"http:\/\/cdn02.content.covestor.com\/14090401\/images\/style1\/dan-plettner.jpg",
             "performance":16.9637347,
-            "MODELURL":"dan-plettner\/taxable-income"
+            "MODELURL":"dan-plettner\/taxable-income",
+            "managerGroup" : "Dan Plettner"
         },
         {
             "id" : "m4",

@@ -27,8 +27,7 @@ define([
             min : 2000,
             max : 2000
         }
-    };
-    var o = options;
+    },o = options;
     function DataModel () {}
     DataModel.prototype.getJsonConstructor =  function (path, success, error) {
             var xhr = new XMLHttpRequest();
@@ -58,14 +57,18 @@ define([
 //                console.error(xhr);
             });
     };
+
     DataModel.prototype.selectRandomPanel = function () {
-        var panels = document.getElementsByClassName('panel'),
+        var panels = document.querySelectorAll('[selected="false"][managerGroup="false"]'),
         randomPanelPosition = Math.floor((Math.random() * panels.length) + 0),
         randomPanel = panels[randomPanelPosition],
         randomPanelType = randomPanel.attributes.class.value,
         randomPanelId = randomPanel.attributes[1].value,
         randomPanelData = [{"randomPanel" : randomPanel}, {"randomPanelPosition": randomPanelPosition}, {"randomPanelType" : randomPanelType},{"randomPanelId" : randomPanelId}],
-        o = options;
+        previousPanel = document.querySelectorAll('[selected="true"]');
+        previousPanel[0].setAttribute("selected","false");
+        randomPanel.setAttribute("selected","true");
+
         if ( randomPanelType == o.panelTypes.quotes ) {
             return randomPanelData;
         } else if ( randomPanelType == o.panelTypes.manager ) {
@@ -84,13 +87,13 @@ define([
             var panelId = panels[i].attributes[1].value;
             panelIds.push(panelId);
             if ( i == panels.length - 1) {
-//                console.log(panelIds)
+
                 return panelIds;
             }
         }
     };
     DataModel.prototype.getAllApiPanelIds = function (data) {
-//        console.log(data);
+
         var panelApiIds = [];
         for (var i = 0; i < data.length; i++) {
             var panelApiId = data[i].id;
@@ -100,9 +103,7 @@ define([
             }
         }
     };
-    var dataModel = new DataModel();
-    var testIds = dataModel.getAllPanelIds();
-    console.log(testIds);
+
     DataModel.prototype.getNewPanelId = function (data, selectedRandomPanelData) {
         var dataModel = new DataModel(),
         panelIds = dataModel.getAllPanelIds(),
@@ -123,31 +124,90 @@ define([
             }
             return(result);
         }
-        var filteredPanelIds = filterArray( panelApiIds, panelIds);
-        if ( filteredPanelIds.length == 1 ) {
-            var newPanelId = filteredPanelIds[0];
-            dataModel.getNewPanelData(data, newPanelId, selectedRandomPanelData);
-            return newPanelId;
+       var filteredPanelIds = filterArray( panelApiIds, panelIds);
+
+        if ( selectedRandomPanelData[3].randomPanelId == "m3" || selectedRandomPanelData[3].randomPanelId == "m2") {
+            for ( var i = 0; i < filteredPanelIds.length; i++) {
+                if ( filteredPanelIds[i] == "m2" &&  selectedRandomPanelData[3].randomPanelId == "m3" ) {
+                    filteredPanelIds.splice(i, 1)
+                    if ( i = filteredPanelIds.length - 1) {
+                        if ( filteredPanelIds.length == 1 ) {
+                            var newPanelId = filteredPanelIds[0];
+                            dataModel.getNewPanelData(data, newPanelId, selectedRandomPanelData);
+                            return newPanelId;
+                        } else {
+                            var newSelectedPanel = Math.floor((Math.random() * filteredPanelIds.length  ) + 0),
+                                newPanelId = filteredPanelIds[newSelectedPanel];
+
+                            dataModel.getNewPanelData(data, newPanelId, selectedRandomPanelData);
+                            return newPanelId;
+                        }
+                    }
+                } else if (  filteredPanelIds[i] == "m3" &&  selectedRandomPanelData[3].randomPanelId == "m2") {
+                    filteredPanelIds.splice(i, 1);
+                    if ( i = filteredPanelIds.length - 1) {
+                        if ( filteredPanelIds.length == 1 ) {
+                            var newPanelId = filteredPanelIds[0];
+                            dataModel.getNewPanelData(data, newPanelId, selectedRandomPanelData);
+                            return newPanelId;
+                        } else {
+                            var newSelectedPanel = Math.floor((Math.random() * filteredPanelIds.length  ) + 0),
+                                newPanelId = filteredPanelIds[newSelectedPanel];
+
+                            dataModel.getNewPanelData(data, newPanelId, selectedRandomPanelData);
+                            return newPanelId;
+                        }
+                    }
+                } else {
+                    if ( filteredPanelIds.length == 1 ) {
+                        var newPanelId = filteredPanelIds[0];
+                        dataModel.getNewPanelData(data, newPanelId, selectedRandomPanelData);
+                        return newPanelId;
+                    } else {
+                        var newSelectedPanel = Math.floor((Math.random() * filteredPanelIds.length  ) + 0),
+                            newPanelId = filteredPanelIds[newSelectedPanel];
+
+                        dataModel.getNewPanelData(data, newPanelId, selectedRandomPanelData);
+                        return newPanelId;
+                    }
+                }
+            }
         } else {
-            var newSelectedPanel = Math.floor((Math.random() * filteredPanelIds.length  ) + 0),
-            newPanelId = filteredPanelIds[newSelectedPanel];
-            dataModel.getNewPanelData(data, newPanelId, selectedRandomPanelData);
-            return newPanelId;
+            if ( filteredPanelIds.length == 1 ) {
+                var newPanelId = filteredPanelIds[0];
+                dataModel.getNewPanelData(data, newPanelId, selectedRandomPanelData);
+                return newPanelId;
+            } else {
+                var newSelectedPanel = Math.floor((Math.random() * filteredPanelIds.length  ) + 0),
+                    newPanelId = filteredPanelIds[newSelectedPanel];
+
+                dataModel.getNewPanelData(data, newPanelId, selectedRandomPanelData);
+                return newPanelId;
+            }
         }
+
     };
     DataModel.prototype.getNewPanelData = function (data, newPanelId, selectedRandomPanelData) {
         var userController = new UserController();
         for ( var i = 0; i < data.length; i++) {
             if ( data[i].id == newPanelId) {
                 var newPanelData = data[i];
-                userController.getPanelData(newPanelData, newPanelId, selectedRandomPanelData);
-                return newPanelData;
+                if ( newPanelData.PUBLISHERSHORTNAME == "Dan Plettner" ) {
+                    selectedRandomPanelData[0].randomPanel.setAttribute("managerGroup","true");
+                    userController.getPanelData(newPanelData, newPanelId, selectedRandomPanelData);
+                    return newPanelData;
+                } else {
+                    selectedRandomPanelData[0].randomPanel.setAttribute("managerGroup","false");
+                    userController.getPanelData(newPanelData, newPanelId, selectedRandomPanelData);
+                    return newPanelData;
+                }
             }
         }
     };
     DataModel.prototype.selectNewPanelData = function (data) {
         var dataModel = new DataModel(),
         selectedRandomPanelData = dataModel.selectRandomPanel();
+
         if ( selectedRandomPanelData[2].randomPanelType == o.panelTypes.quotes) {
             dataModel.getNewPanelId(data.QUOTES, selectedRandomPanelData);
         } else if ( selectedRandomPanelData[2].randomPanelType == o.panelTypes.manager) {

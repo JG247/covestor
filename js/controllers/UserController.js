@@ -14,5 +14,8 @@ define([
         var animationView = new AnimationView();
         animationView.getPanelData(panelData, newPanelId, selectedRandomPanelData);
     };
+    UserController.prototype.previousPanelData = function (previousPanelData) {
+        console.log("Previous panel data" +  " " + previousPanelData)
+    };
     return UserController;
 });
